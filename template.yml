@@ -28,7 +28,7 @@ Resources:
           who_feed_url: >-
             https://services.arcgis.com/5T5nSi527N4F7luB/arcgis/rest/services/COVID19_hist_cases_adm0_v5_view/FeatureServer/0/query?outFields=*&where=1%3D1&f=json
       Layers:
-        - 'arn:aws:lambda:us-east-2:381144527382:layer:pandas-xlrd:2'
+        - 'arn:aws:lambda:us-east-1:381144527382:layer:pandas-xlrd:1'
 
 
 
