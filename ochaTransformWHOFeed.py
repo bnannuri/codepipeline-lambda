@@ -13,6 +13,7 @@ temp_output_filepath = os.environ['temp_output_filepath']
 who_feed_url = os.environ['who_feed_url']
 
 print(who_feed_url)
+print(s3_ocha_transformed_key)
 print(temp_output_filename+temp_output_filename)
 
 def transform_handler (event, context):
