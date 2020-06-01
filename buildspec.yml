@@ -6,7 +6,7 @@ phases:
   build:
     commands:
       - npm install time
-      - export BUCKET=codepipeline-us-east-1-500176292572
+      - export BUCKET=pipeline-github-lambda
       - aws cloudformation package --template-file template.yml --s3-bucket $BUCKET --output-template-file outputtemplate.yml
 artifacts:
   type: zip
