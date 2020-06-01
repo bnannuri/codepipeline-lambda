@@ -1,16 +1,51 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Transform: AWS::Serverless-2016-10-31
-Description: Outputs the time
+Transform: 'AWS::Serverless-2016-10-31'
+Description: An AWS Serverless Specification template describing your function.
 Resources:
-  TimeFunction:
-    Type: AWS::Serverless::Function
+  ochaTranformWHO:
+    Type: 'AWS::Serverless::Function'
     Properties:
-      Handler: index.handler
-      Runtime: nodejs10.x
-      CodeUri: ./
+      Handler: ochaTransformWHOFeed.transform_handler
+      Runtime: python3.7
+      CodeUri: .
+      Description: ''
+      MemorySize: 1024
+      Timeout: 60
+      Role: 'arn:aws:iam::381144527382:role/LambdaS3FullAccess'
       Events:
-        MyTimeApi:
-          Type: Api
+        Schedule1:
+          Type: Schedule
           Properties:
-            Path: /TimeResource
-            Method: GET
+            Schedule: rate(12 hours)
+      Environment:
+        Variables:
+          s3_bucketname: unocha-who-transformed
+          s3_ocha_transformed_key: >-
+            Data_ WHO Coronavirus Covid-19 Cases and Deaths -
+            WHO-COVID-19-global-data.csv
+          temp_output_filename: output.csv
+          temp_output_filepath: /tmp/
+          who_feed_url: >-
+            https://services.arcgis.com/5T5nSi527N4F7luB/arcgis/rest/services/COVID19_hist_cases_adm0_v5_view/FeatureServer/0/query?outFields=*&where=1%3D1&f=json
+      Layers:
+        - 'arn:aws:lambda:us-east-2:381144527382:layer:pandas-xlrd:2'
+
+
+
+
+# AWSTemplateFormatVersion: '2010-09-09'
+# Transform: AWS::Serverless-2016-10-31
+# Description: Outputs the time
+# Resources:
+#   TimeFunction:
+#     Type: AWS::Serverless::Function
+#     Properties:
+#       Handler: index.handler
+#       Runtime: nodejs10.x
+#       CodeUri: ./
+#       Events:
+#         MyTimeApi:
+#           Type: Api
+#           Properties:
+#             Path: /TimeResource
+#             Method: GET
