@@ -12,6 +12,9 @@ temp_output_filename = os.environ['temp_output_filename']
 temp_output_filepath = os.environ['temp_output_filepath']	
 who_feed_url = os.environ['who_feed_url']
 
+print(who_feed_url)
+print(s3_bucketname)
+
 def transform_handler (event, context):
     json_csv()
     write_to_s3()
